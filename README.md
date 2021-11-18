@@ -3,6 +3,8 @@
 
 [erosoft.com.br](http://www.erosoft.com.br/)
 
+> Versão rodando em produção do site erosoft.com.br
+
 ## 💻 Tecnologias
 
 - [NextJS](https://nextjs.org/)
