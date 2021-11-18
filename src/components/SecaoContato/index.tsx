@@ -1,4 +1,4 @@
-import { EmailIcon, LocationIcon, PhoneIcon } from "../../svg/icons/icons"
+import { Download, EmailIcon, LocationIcon, PhoneIcon } from "../../svg/icons/icons"
 import WaveBackgroundSVG from "../../svg/waveBackgroundSVG";
 import FormularioContato from "./FormularioContato";
 
@@ -10,9 +10,9 @@ export default function SecaoContato() {
     const atendimento = "Atendimento"
 
     return (
-        <section id={"secao-contato"} className={"background-triangle "}>
+        <section id={"secao-contato"} className={"background-triangle"}>
             <div className={`flex flex-col min-h-screen w-full bg-erosoft-green-1 bg-opacity-80`}>
-
+                
                 <WaveBackgroundSVG />
 
                 <div id="conteudo"
@@ -21,12 +21,13 @@ export default function SecaoContato() {
                                     flex-col lg:flex-row 
                                     mx-4 sm:mx-20 md:mx-40 lg:mx-8
                         `}>
+                    
                     <div id="lado-esquerdo"
                         className={` 
                                           flex flex-col flex-grow 
                                           justify-end lg:justify-center                      
                                           mt-2 lg:mt-20                                                                    
-                                          sm:items-center  
+                                          sm:items-center z-30
                               `}>
                         <h2 id="subtitulo"
                             className={`
@@ -72,15 +73,40 @@ export default function SecaoContato() {
                                 {endereco}
                             </span>
                         </div>
-                        <div className="hidden sm:flex">
-                            <h2
-                                className={`
-                                text-white font-bold
-                                text-xl md:text-2xl 2xl:text-4xl
-                                my-1 lg:my-3
+                        <div className="hidden sm:flex sm:flex-col sm:justify-center sm:items-center">
+
+                            <h2 className={`
+                                        text-white font-bold
+                                        text-xl md:text-2xl 2xl:text-4xl
+                                        my-1 lg:my-3
                                     `}>
                                 Links Úteis
                             </h2>
+
+                            <button className={"flex cursor-pointer items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-blue-700 bg-blue-600"}>
+
+                                {Download("#FFF")}
+
+                                <a href="" className={` 
+                                                text-lg xl:text-xl 2xl:text-2xl 
+                                                text-gray-200 font-medium ml-2                                   
+                                          `}>
+                                    Download1
+                                </a>
+                            </button>
+
+                            <button className={"flex cursor-pointer items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-red-700 bg-red-600"}>
+
+                                {Download("#FFF")}
+
+                                <a href="" className={` 
+                                                text-lg xl:text-xl 2xl:text-2xl 
+                                                text-gray-200 font-medium ml-2                                   
+                                          `}>
+                                    Download2
+                                </a>
+                            </button>
+
                         </div>
                     </div>
 
