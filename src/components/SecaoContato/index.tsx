@@ -85,7 +85,6 @@ export default function SecaoContato() {
 
                             <button className={"flex cursor-pointer items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-blue-700 bg-blue-600"}>
 
-                                {Download("#FFF")}
 
                                 <a href="" className={` 
                                                 text-lg xl:text-xl 2xl:text-2xl 
@@ -97,7 +96,6 @@ export default function SecaoContato() {
 
                             <button className={"flex cursor-pointer items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-red-700 bg-red-600"}>
 
-                                {Download("#FFF")}
 
                                 <a href="" className={` 
                                                 text-lg xl:text-xl 2xl:text-2xl 
