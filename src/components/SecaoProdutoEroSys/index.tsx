@@ -5,10 +5,14 @@ import ProductDescriptionCard from "./ProductDescriptionCard";
 import ImagemSlider from "./ImagemSlider";
 import api from '../../config/configApi'
 
-export default function SecaoEroSys() {
+interface SecaoEroSysProps {
+    token: any
+}
+
+export default function SecaoEroSys(props: SecaoEroSysProps) {
 
     const [isSelected, setIsSelected] = useState("Nota Fiscal Eletrônica")
-    const [moduloFilter, setModuloFilter] = useState("nota-fiscal-eletronica")
+    const [moduloFilter, setModuloFilter] = useState("notafiscaleletronica")
     const [funcionalidade, setFuncionalidade] = useState<any>()
     const [id, setId] = useState<any>(null)
 
@@ -16,19 +20,25 @@ export default function SecaoEroSys() {
         return funcionalidade != null && (
             funcionalidade.map((t: any) => {
                 return (
-                    <ProductDescriptionCard key={t._id} id={t._id} isSelected={id} label={t.titulo} setId={setId} />
+                    <div key={t.Id}>
+                        <ProductDescriptionCard key={t.Id} id={t.Id} isSelected={id} label={t.titulo} setId={setId} />
+                    </div>
                 )
             }
             ))
     }
 
     async function carregarFuncionalidades() {
-        await api.get(`/all/${moduloFilter}`).then(response => { setFuncionalidade(response.data) })
+        if (props.token != undefined)
+            await api.get(`/servererosoft/ServerSite/SiteEroSoftServer.exe/all/${moduloFilter}?Authorization=Bearer%20${props.token}`).then(response => { setFuncionalidade(response.data) })
     }
 
     useEffect(() => {
-        carregarFuncionalidades()
-    }, [isSelected])
+
+        if(props.token)
+            carregarFuncionalidades()
+    }, [isSelected, props.token])
+
 
     return (
         <section id={"secao-erosys"} className={"bg-gray-300 flex flex-col min-h-screen w-full"}>
@@ -39,7 +49,7 @@ export default function SecaoEroSys() {
                         gap-2 
                   `}>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Nota Fiscal Eletrônica"), setModuloFilter("nota-fiscal-eletronica"), setId(null) }}>
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Nota Fiscal Eletrônica"), setModuloFilter("notafiscaleletronica"), setId(null) }}>
 
                     <ProductCard isSelected={isSelected} label={"Nota Fiscal Eletrônica"}>
                         {TaxIcon("#000")}
@@ -47,7 +57,7 @@ export default function SecaoEroSys() {
 
                 </div>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão Financeira"), setModuloFilter("gestao-financeira"), setId(null) }}>
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão Financeira"), setModuloFilter("financeiro"), setId(null) }}>
 
                     <ProductCard isSelected={isSelected} label={"Gestão Financeira"}>
                         {MoneyIcon("#000")}
@@ -55,7 +65,7 @@ export default function SecaoEroSys() {
 
                 </div>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão da Produção"), setModuloFilter("gestao-da-producao"), setId(null) }}>
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão da Produção"), setModuloFilter("producao"), setId(null) }}>
 
                     <ProductCard isSelected={isSelected} label={"Gestão da Produção"}>
                         {ProductionIcon("#000")}
@@ -63,7 +73,7 @@ export default function SecaoEroSys() {
 
                 </div>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão do Pessoal"), setModuloFilter("gestao-do-pessoal"), setId(null) }} >
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão do Pessoal"), setModuloFilter("pessoal"), setId(null) }} >
 
                     <ProductCard isSelected={isSelected} label={"Gestão do Pessoal"}>
                         {UserIcon("#000")}
@@ -86,7 +96,7 @@ export default function SecaoEroSys() {
 
                 <div className={`w-11/12 md:w-2/4 flex justify-center`}>
                     <div className={`mx-4 lg:mx-16`}>
-                        <ImagemSlider isSelected={id} funcionalidade={funcionalidade} />
+                        <ImagemSlider isSelected={id} funcionalidade={funcionalidade} token={props.token} />
                     </div>
                 </div>
 

@@ -4,6 +4,7 @@ import React from "react"
 interface ImagemSliderProps {
     funcionalidade: any
     isSelected: any
+    token: any
 }
 
 export default function ImagemSlider(props: ImagemSliderProps) {
@@ -39,22 +40,22 @@ export default function ImagemSlider(props: ImagemSliderProps) {
     return (
         <>
             {typeof props.isSelected === 'string' ? (
-
+                
                 props.funcionalidade != null && props.funcionalidade.map((e: any, index: number) => {
 
-                    return (e._id === props.isSelected &&
-                        <div key={e._id}>
-                            <img alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8080/uploads/${e.URLimagem}`} />
-
+                    return (e.Id === props.isSelected &&
+                        <div key={e.Id}>
+                            <img alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8085/servererosoft/ServerSite/SiteEroSoftServer.exe/${e.urlimagem}?Authorization=Bearer%20${props.token}`} />
                             <div className={"text-xs sm:text-base xl:text-md 2xl:text-xl m-4 p-2 rounded-xl text-center ring-2 ring-erosoft-green-1 bg-gray-100 font-semibold shadow-lg"}>
-                                <span>{e.description}</span>
+                                <span>{e.descricao}</span>
                             </div>
                         </div>
                     )
                 })
             ) : (
                 props.funcionalidade != null && props.funcionalidade.map((e: any, index: number) => {
-                    return current === index && <img key={index} alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8080/uploads/${e.URLimagem}`} />
+                    {console.log("aqui")}
+                    return current === index && <img key={index} alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8085/servererosoft/ServerSite/SiteEroSoftServer.exe/${e.urlimagem}?Authorization=Bearer%20${props.token}`} />
                 })
             )
             }
