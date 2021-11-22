@@ -45,16 +45,15 @@ export default function ImagemSlider(props: ImagemSliderProps) {
 
                     return (e.Id === props.isSelected &&
                         <div key={e.Id}>
-                            <img alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8085/servererosoft/ServerSite/SiteEroSoftServer.exe/${e.urlimagem}?Authorization=Bearer%20${props.token}`} />
                             <div className={"text-xs sm:text-base xl:text-md 2xl:text-xl m-4 p-2 rounded-xl text-center ring-2 ring-erosoft-green-1 bg-gray-100 font-semibold shadow-lg"}>
                                 <span>{e.descricao}</span>
                             </div>
+                            <img alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8085/servererosoft/ServerSite/SiteEroSoftServer.exe/${e.urlimagem}?Authorization=Bearer%20${props.token}`} />
                         </div>
                     )
                 })
             ) : (
                 props.funcionalidade != null && props.funcionalidade.map((e: any, index: number) => {
-                    {console.log("aqui")}
                     return current === index && <img key={index} alt="Imagem da Funcionalidade" src={`http://erosoft.com.br:8085/servererosoft/ServerSite/SiteEroSoftServer.exe/${e.urlimagem}?Authorization=Bearer%20${props.token}`} />
                 })
             )

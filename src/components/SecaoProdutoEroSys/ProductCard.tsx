@@ -18,7 +18,7 @@ export default function ProductCard(props: ProductCardProps){
                     animate={isSelected ? {scale: 1.1} : {scale: 0.9} }
                     className={`
                         flex flex-col items-center jus flex-grow cursor-pointer
-                        p-4 sm:p-6 
+                        p-2
                         rounded-xl shadow-lg
                         bg-erosoft-green-1   
                 `}>
@@ -41,7 +41,7 @@ export default function ProductCard(props: ProductCardProps){
                     animate={isSelected ? {scale: 1.05} : {scale: 0.95} }
                     className={`
                         flex flex-col items-center jus flex-grow cursor-pointer
-                        p-2 sm:p-6 
+                        p-2 
                         rounded-xl shadow-lg
                         bg-gradient-to-tr from-gray-50 to-gray-100
                 `}>

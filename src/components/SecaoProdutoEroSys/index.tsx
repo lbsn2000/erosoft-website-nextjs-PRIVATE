@@ -41,12 +41,12 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
 
 
     return (
-        <section id={"secao-erosys"} className={"bg-gray-300 flex flex-col min-h-screen w-full"}>
+        <section id={"secao-erosys"} className={"bg-gray-300 flex flex-col lg:grid lg:grid-cols-5 min-h-screen w-full"}>
 
             <div className={`
-                        grid grid-cols-2 md:grid-cols-4
-                        mt-8 sm:mt-28 mx-8
-                        gap-2 
+                        grid grid-cols-2 
+                        lg:flex lg:flex-col lg:justify-center sm:mt-28 lg:mt-20
+                        mx-4 gap-2 md:gap-y-2
                   `}>
 
                 <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Nota Fiscal Eletrônica"), setModuloFilter("notafiscaleletronica"), setId(null) }}>
@@ -82,9 +82,16 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
 
             </div>
 
-            <div className="flex flex-col items-center md:items-start md:flex-row mx-4 md:mt-10 xl:mt-4 2xl:mt-8">
+            <div className={`
+                flex flex-col items-center justify-center  
+                md:items-start md:flex-row md:mt-10 
+                lg:col-span-4 lg:grid 
+                xl:mt-4 
+                2xl:mt-8
+            
+            `}>
 
-                <div className={`w-3/4 md:w-2/4 md:ml-4 lg:ml-16`}>
+                <div className={`lg:mt-20`}>
                     <div className={` 
                         grid grid-cols-2 grid-flow-row gap-y-2 my-4 
                         lg:grid-rows-3 lg:grid-cols-3 lg:grid-flow-row
@@ -94,8 +101,8 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
                 </div>
 
 
-                <div className={`w-11/12 md:w-2/4 flex justify-center`}>
-                    <div className={`mx-4 lg:mx-16`}>
+                <div className={`justify-self-center lg:w-2/4 2xl:w-3/4`}>
+                    <div className={`flex justify-center items-center `}>
                         <ImagemSlider isSelected={id} funcionalidade={funcionalidade} token={props.token} />
                     </div>
                 </div>
