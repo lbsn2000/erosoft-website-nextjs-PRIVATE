@@ -5,10 +5,14 @@ import ProductDescriptionCard from "./ProductDescriptionCard";
 import ImagemSlider from "./ImagemSlider";
 import api from '../../config/configApi'
 
-export default function SecaoEroSys() {
+interface SecaoEroSysProps {
+    token: any
+}
+
+export default function SecaoEroSys(props: SecaoEroSysProps) {
 
     const [isSelected, setIsSelected] = useState("Nota Fiscal Eletrônica")
-    const [moduloFilter, setModuloFilter] = useState("nota-fiscal-eletronica")
+    const [moduloFilter, setModuloFilter] = useState("notafiscaleletronica")
     const [funcionalidade, setFuncionalidade] = useState<any>()
     const [id, setId] = useState<any>(null)
 
@@ -16,30 +20,34 @@ export default function SecaoEroSys() {
         return funcionalidade != null && (
             funcionalidade.map((t: any) => {
                 return (
-                    <ProductDescriptionCard key={t._id} id={t._id} isSelected={id} label={t.titulo} setId={setId} />
+                        <ProductDescriptionCard key={t.Id} id={t.Id} isSelected={id} label={t.titulo} setId={setId} />
                 )
             }
             ))
     }
 
     async function carregarFuncionalidades() {
-        await api.get(`/all/${moduloFilter}`).then(response => { setFuncionalidade(response.data) })
+        if (props.token != undefined)
+            await api.get(`/servererosoft/ServerSite/SiteEroSoftServer.exe/all/${moduloFilter}?Authorization=Bearer%20${props.token}`).then(response => { setFuncionalidade(response.data) })
     }
 
     useEffect(() => {
-        carregarFuncionalidades()
-    }, [isSelected])
+
+        if (props.token)
+            carregarFuncionalidades()
+    }, [isSelected, props.token])
+
 
     return (
-        <section id={"secao-erosys"} className={"bg-gray-300 flex flex-col min-h-screen w-full"}>
+        <section id={"secao-erosys"} className={"bg-gray-300 flex flex-col lg:grid lg:grid-cols-5 min-h-screen w-full"}>
 
             <div className={`
-                        grid grid-cols-2 md:grid-cols-4
-                        mt-8 sm:mt-28 mx-8
-                        gap-2 
+                        grid grid-cols-2 
+                        lg:flex lg:flex-col lg:justify-center sm:mt-28 lg:mt-20
+                        mx-2 lg:mx-4 gap-y-4 mt-4
                   `}>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Nota Fiscal Eletrônica"), setModuloFilter("nota-fiscal-eletronica"), setId(null) }}>
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Nota Fiscal Eletrônica"), setModuloFilter("notafiscaleletronica"), setId(null) }}>
 
                     <ProductCard isSelected={isSelected} label={"Nota Fiscal Eletrônica"}>
                         {TaxIcon("#000")}
@@ -47,7 +55,7 @@ export default function SecaoEroSys() {
 
                 </div>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão Financeira"), setModuloFilter("gestao-financeira"), setId(null) }}>
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão Financeira"), setModuloFilter("financeiro"), setId(null) }}>
 
                     <ProductCard isSelected={isSelected} label={"Gestão Financeira"}>
                         {MoneyIcon("#000")}
@@ -55,7 +63,7 @@ export default function SecaoEroSys() {
 
                 </div>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão da Produção"), setModuloFilter("gestao-da-producao"), setId(null) }}>
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão da Produção"), setModuloFilter("producao"), setId(null) }}>
 
                     <ProductCard isSelected={isSelected} label={"Gestão da Produção"}>
                         {ProductionIcon("#000")}
@@ -63,7 +71,7 @@ export default function SecaoEroSys() {
 
                 </div>
 
-                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão do Pessoal"), setModuloFilter("gestao-do-pessoal"), setId(null) }} >
+                <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Gestão do Pessoal"), setModuloFilter("pessoal"), setId(null) }} >
 
                     <ProductCard isSelected={isSelected} label={"Gestão do Pessoal"}>
                         {UserIcon("#000")}
@@ -72,25 +80,29 @@ export default function SecaoEroSys() {
 
             </div>
 
-            <div className="flex flex-col items-center md:items-start md:flex-row mx-4 md:mt-10 xl:mt-4 2xl:mt-8">
-
-                <div className={`w-3/4 md:w-2/4 md:ml-4 lg:ml-16`}>
-                    <div className={` 
-                        grid grid-cols-2 grid-flow-row gap-y-2 my-4 
-                        lg:grid-rows-3 lg:grid-cols-3 lg:grid-flow-row
+            <div className={`lg:hidden mx-4`}>
+                <div className={` 
+                        grid grid-cols-2 col-auto gap-y-2 my-4 
                     `}>
-                        {funcionalidadeCard()}
-                    </div>
+                    {funcionalidadeCard()}
                 </div>
-
-
-                <div className={`w-11/12 md:w-2/4 flex justify-center`}>
-                    <div className={`mx-4 lg:mx-16`}>
-                        <ImagemSlider isSelected={id} funcionalidade={funcionalidade} />
-                    </div>
-                </div>
-
             </div>
+    
+            <div className={`justify-self-center self-center lg:mt-20 lg:w-3/4 2xl:w-11/12 w-10/12 lg:col-span-3`}>
+                <div className={`flex justify-center items-center `}>
+                    <ImagemSlider isSelected={id} funcionalidade={funcionalidade} token={props.token} />
+                </div>
+            </div>
+
+            <div className={`hidden lg:mt-20 lg:items-center lg:flex mx-4`}>
+                <div className={` 
+                        grid grid-cols-2 grid-flow-row gap-y-2 my-4 
+                        lg:flex lg:flex-col lg:justify-center 
+                    `}>
+                    {funcionalidadeCard()}
+                </div>
+            </div>
+
         </section>
     )
 }
