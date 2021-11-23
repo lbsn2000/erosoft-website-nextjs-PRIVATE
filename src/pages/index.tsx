@@ -7,6 +7,7 @@ import SecaoEroSys from "../components/SecaoProdutoEroSys";
 import Head from 'next/head'
 import { useEffect, useState } from "react";
 import api from '../config/configApi'
+import { format } from "date-fns";
 
 export default function Home() {
 
@@ -22,9 +23,10 @@ export default function Home() {
 
     let axiosConfig = {
             "ContentType": "application/json",
-            "Auth": "EroSoft 22.11.2021"
+            "Auth": `EroSoft ${format(new Date(), 'dd.MM.yyyy')}`
     };
 
+    console.log(`EroSoft ${format(new Date(), 'dd.MM.yyyy')}`)
 
     async function carregarFuncionalidades() {
         await api.post('http://erosoft.com.br:8085/servererosoft/EroSoftOS/OSServerAMPQ.exe/usuario/auth',postData,{headers: axiosConfig})

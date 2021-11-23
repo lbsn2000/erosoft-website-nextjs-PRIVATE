@@ -20,9 +20,7 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
         return funcionalidade != null && (
             funcionalidade.map((t: any) => {
                 return (
-                    <div key={t.Id}>
                         <ProductDescriptionCard key={t.Id} id={t.Id} isSelected={id} label={t.titulo} setId={setId} />
-                    </div>
                 )
             }
             ))
@@ -35,7 +33,7 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
 
     useEffect(() => {
 
-        if(props.token)
+        if (props.token)
             carregarFuncionalidades()
     }, [isSelected, props.token])
 
@@ -46,7 +44,7 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
             <div className={`
                         grid grid-cols-2 
                         lg:flex lg:flex-col lg:justify-center sm:mt-28 lg:mt-20
-                        mx-4 gap-2 md:gap-y-2
+                        mx-2 lg:mx-4 gap-y-4 mt-4
                   `}>
 
                 <div className={`flex justify-center items-center`} onClick={() => { setIsSelected("Nota Fiscal Eletrônica"), setModuloFilter("notafiscaleletronica"), setId(null) }}>
@@ -82,32 +80,29 @@ export default function SecaoEroSys(props: SecaoEroSysProps) {
 
             </div>
 
-            <div className={`
-                flex flex-col items-center justify-center  
-                md:items-start md:flex-row md:mt-10 
-                lg:col-span-4 lg:grid 
-                xl:mt-4 
-                2xl:mt-8
-            
-            `}>
-
-                <div className={`lg:mt-20`}>
-                    <div className={` 
-                        grid grid-cols-2 grid-flow-row gap-y-2 my-4 
-                        lg:grid-rows-3 lg:grid-cols-3 lg:grid-flow-row
+            <div className={`lg:hidden mx-4`}>
+                <div className={` 
+                        grid grid-cols-2 col-auto gap-y-2 my-4 
                     `}>
-                        {funcionalidadeCard()}
-                    </div>
+                    {funcionalidadeCard()}
                 </div>
-
-
-                <div className={`justify-self-center lg:w-2/4 2xl:w-3/4`}>
-                    <div className={`flex justify-center items-center `}>
-                        <ImagemSlider isSelected={id} funcionalidade={funcionalidade} token={props.token} />
-                    </div>
-                </div>
-
             </div>
+    
+            <div className={`justify-self-center self-center lg:mt-20 lg:w-3/4 2xl:w-11/12 w-10/12 lg:col-span-3`}>
+                <div className={`flex justify-center items-center `}>
+                    <ImagemSlider isSelected={id} funcionalidade={funcionalidade} token={props.token} />
+                </div>
+            </div>
+
+            <div className={`hidden lg:mt-20 lg:items-center lg:flex mx-4`}>
+                <div className={` 
+                        grid grid-cols-2 grid-flow-row gap-y-2 my-4 
+                        lg:flex lg:flex-col lg:justify-center 
+                    `}>
+                    {funcionalidadeCard()}
+                </div>
+            </div>
+
         </section>
     )
 }

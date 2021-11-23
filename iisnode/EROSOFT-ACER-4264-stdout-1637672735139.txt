@@ -1,0 +1,1 @@
+info  - Loaded env from C:\Program Files\iisnode\www\erosoft-nextjs\.env.local

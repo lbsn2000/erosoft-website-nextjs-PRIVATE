@@ -24,7 +24,7 @@ export default function ProductDescriptionCard(props: ProductDescriptionCardProp
                     onClick={selecionar}
                     animate={isSelected ? {scale: 1} : {scale: 0.9} }
                     className={`  
-                        flex justify-center items-center p-1
+                        flex justify-center items-center p-1 
                         rounded-sm shadow-lg text-center cursor-pointer
                         text-xs sm:text-lg 2xl:text-xl
                         bg-gradient-to-r ring-2 to-green-400 from-erosoft-green-1 ring-erosoft-green-3

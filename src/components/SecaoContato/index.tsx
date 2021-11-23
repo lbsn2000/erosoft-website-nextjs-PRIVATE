@@ -12,7 +12,7 @@ export default function SecaoContato() {
     return (
         <section id={"secao-contato"} className={"background-triangle"}>
             <div className={`flex flex-col min-h-screen w-full bg-erosoft-green-1 bg-opacity-80`}>
-                
+
                 <WaveBackgroundSVG />
 
                 <div id="conteudo"
@@ -21,7 +21,7 @@ export default function SecaoContato() {
                                     flex-col lg:flex-row 
                                     mx-4 sm:mx-20 md:mx-40 lg:mx-8
                         `}>
-                    
+
                     <div id="lado-esquerdo"
                         className={` 
                                           flex flex-col flex-grow 
@@ -83,27 +83,14 @@ export default function SecaoContato() {
                                 Links Úteis
                             </h2>
 
-                            <button className={"flex cursor-pointer items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-blue-700 bg-blue-600"}>
+                            <form method="get" action="AcessoRemoto.exe">
+                                <button type="submit" className={"flex items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-red-700 bg-red-600"} >
+                                    {Download()}
 
+                                    <p className={`text-lg  cursor-pointer  xl:text-xl 2xl:text-2xl text-gray-200 font-medium ml-2`} >Acesso Remoto</p>
+                                </button>
+                            </form>
 
-                                <a href="" className={` 
-                                                text-lg xl:text-xl 2xl:text-2xl 
-                                                text-gray-200 font-medium ml-2                                   
-                                          `}>
-                                    Download1
-                                </a>
-                            </button>
-
-                            <button className={"flex cursor-pointer items-center p-2 rounded-md shadow-lg  my-1 lg:my-3 hover:bg-red-700 bg-red-600"}>
-
-
-                                <a href="" className={` 
-                                                text-lg xl:text-xl 2xl:text-2xl 
-                                                text-gray-200 font-medium ml-2                                   
-                                          `}>
-                                    Download2
-                                </a>
-                            </button>
 
                         </div>
                     </div>
